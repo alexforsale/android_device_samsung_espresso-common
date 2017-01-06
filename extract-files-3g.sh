@@ -20,7 +20,7 @@ COMMON=espresso3g
 COMMONOUTDIR=vendor/$VENDOR/$COMMON
 COMMONBASE=../../../$COMMONOUTDIR/proprietary
 COMMONMAKEFILE=../../../$COMMONOUTDIR/espresso3g-vendor-blobs.mk
-COMMONPROPS=proprietary-files-3g.txt
+COMMONPROPS=../espresso-common/proprietary-files-3g.txt
 
 mkdir -p ../../../vendor/$VENDOR/$COMMON/proprietary
 
@@ -53,7 +53,7 @@ done
 # limitations under the License.
 
 PRODUCT_COPY_FILES += \\
-    \vendor/samsung/espresso3g/proprietary/sbin/cbd:root/sbin/cbd
+    vendor/samsung/espresso3g/proprietary/sbin/cbd:root/sbin/cbd
 
 PRODUCT_COPY_FILES += \\
 EOF
@@ -65,7 +65,7 @@ for FILE in `cat $COMMONPROPS | grep -v ^# | grep -v ^$`; do
     if [ $COUNT = "0" ]; then
         LINEEND=""
     fi
-    echo "    \vendor/samsung/espresso3g/proprietary/$FILE:$FILE$LINEEND" >> $COMMONMAKEFILE
+    echo "    vendor/samsung/espresso3g/proprietary/$FILE:$FILE$LINEEND" >> $COMMONMAKEFILE
 done
 
 
@@ -104,4 +104,4 @@ EOF
 
 EOF
 
-./extract-files.sh
+./../espresso-common/extract-files-common.sh
